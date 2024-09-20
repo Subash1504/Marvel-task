@@ -1,3 +1,8 @@
+![Resume_Subash_Chandra_Poornaraga_Colored](https://github.com/user-attachments/assets/8aecfaf5-9ff6-43c4-a160-d6ce2f1a06e0)
+
+
+
+
 # Equipments required 
 - ESP32
 - Bread board
