@@ -1,0 +1,77 @@
+
+#include <Wire.h>
+#include <Adafruit_GFX.h>
+#include <Adafruit_SSD1306.h>
+
+// Define the dimensions of the display
+#define SCREEN_WIDTH 128
+#define SCREEN_HEIGHT 64
+
+// Define the OLED reset pin
+#define OLED_RESET    -1
+
+// Create an SSD1306 display object connected to I2C
+Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
+
+void setup() {
+  // Initialize the serial communication
+  Serial.begin(115200);
+
+  // Initialize the display with the I2C address 0x3C
+  if (!display.begin(SSD1306_I2C_ADDRESS, OLED_RESET)) {
+    Serial.println(F("SSD1306 allocation failed"));
+    for (;;);
+  }
+  
+  // Clear the buffer
+  display.clearDisplay();
+
+  // Set the text size
+  display.setTextSize(1);
+
+  // Set the text color
+  display.setTextColor(SSD1306_WHITE);
+
+  // Set the cursor position
+  display.setCursor(0, 10);
+
+  // Print a message to the display
+  display.println(F("Hello, world!"));
+
+  // Display the text
+  display.display();
+}
+
+void loop() {
+  // Do nothing in the loop
+}
+```
+
+### Step 4: Upload the Sketch
+
+1. Connect your ESP32 to your computer via USB.
+2. Open the Arduino IDE and select the correct board and port.
+   - Go to **Tools > Board** and select **ESP32 Dev Module**.
+   - Go to **Tools > Port** and select the correct COM port.
+3. Click the **Upload** button to upload the sketch to your ESP32.
+
+### Step 5: Verify the Display
+
+After uploading the sketch, your OLED display should show the message "Hello, world!". If you see this message, the OLED screen is working correctly.
+
+### Troubleshooting
+
+If the display does not show the message, check the following:
+
+1. **Wiring**: Ensure that the SDA, SCL, VCC, and GND connections are correct.
+2. **I2C Address**: The default I2C address for many OLED displays is `0x3C`. If your display uses a different address, change the address in the `display.begin()` function:
+   ```cpp
+   if (!display.begin(SSD1306_I2C_ADDRESS, OLED_RESET)) {
+   ```
+   to
+   ```cpp
+   if (!display.begin(0x3D, OLED_RESET)) { // Replace 0x3D with your display's I2C address
+   ```
+3. **Power Supply**: Ensure the display is receiving enough power. The VCC pin should be connected to 3.3V.
+
+By following these steps, you should be able to verify that your OLED screen is working properly with your ESP32.
