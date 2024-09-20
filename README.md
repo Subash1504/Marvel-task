@@ -1,5 +1,6 @@
 # Equipments required 
 - ESP32
+- Bread board
 - jumping wires
 - OLED
 - buzzer
